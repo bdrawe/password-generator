@@ -1,4 +1,4 @@
-// Assignment Code
+//global variables
 var generateBtn = document.querySelector("#generate");
 let pw = "";
 let masterArr = [];
@@ -12,6 +12,7 @@ let startNum
 //validate that input is a number between 8 and 128
 function valNumber() {
   do {
+    //prompt to meet all criteria
     startNum = window.prompt('Please enter a number between 8 and 128');
     startNum = parseInt(startNum);
     var lowerCase = window.confirm("Would you like to include lowercase letters? Select 'ok' or 'cancel'.")
@@ -20,8 +21,9 @@ function valNumber() {
     var useNumbers = window.confirm("Would you like to use numbers? Select \"ok\" or \"cancel\".");
     
     if(startNum >= 8 && startNum <= 128){
-      
+      //while the masterArr. length is less than the number given.  
       while( masterArr.length < startNum){
+        //in the while loop it will check each if each criteria is met and will call the getRandom function while passing the parameter of the variable.
         if (lowerCase && masterArr.length < startNum) {
           getRandom(lowerArr);
         } 
@@ -40,15 +42,19 @@ function valNumber() {
     }
   } while(!(startNum >= 8 && startNum <= 128));
 };
-
+//get random function
 function getRandom(arr) {
+//random functionality
   let randomItem = arr[Math.floor(Math.random() * arr.length)];
+//pushing the random value into the masterArr
   masterArr.push(randomItem);
+//making the array a string
   pw = masterArr.join('');
-  var password = pw;
+//storing the document.querySelector calling upon the id of #password
   var passwordText = document.querySelector("#password");
+//making the value of the line above your current password.
   passwordText.value = pw;
-  console.log('this is your final password :' + password);
+
 };
 
 generateBtn.addEventListener("click", valNumber);
